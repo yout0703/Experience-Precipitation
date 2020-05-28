@@ -288,22 +288,26 @@ https://github.com/alibaba/nacos/blob/develop/distribution/conf/nacos-mysql.sql
    ```
    
 
-这里踩了很多坑，首先由于之前的某些参数被废弃，所以Nacos一直启动不起来。后来参考了官方的GitHub，才配置正确。https://github.com/nacos-group/nacos-docker，之后又遇到无法连接数据库的问题：![image-20200528210323406](images/nacos-04.png)
+   这里踩了很多坑，首先由于之前的某些参数被废弃，所以Nacos一直启动不起来。后来参考了官方的GitHub，才配置正确。https://github.com/nacos-group/nacos-docker。
 
-![image-20200528210441086](images/nacos-05.png)
+   之后又遇到无法连接数据库的问题：
 
-分析是因为不同容器之间端口访问的问题，关闭防火墙以后，就能正常启动了。后续还要研究下具体的问题是什么。
+   ![image-20200528210323406](images/nacos-04.png)
 
-```shell
-   systemctl stop firewalld
-```
+   ![image-20200528210441086](images/nacos-05.png)
+
+   分析是因为不同容器之间端口访问的问题，关闭防火墙以后，就能正常启动了。后续还要研究下具体的问题是什么。
+
+  ```shell
+     systemctl stop firewalld
+  ```
 
 
-访问：`http://ip:8488/nacos`，Nacos启动成功。
+  访问：`http://ip:8488/nacos`，Nacos启动成功。
 
-配置测试内容，成功写入Mysql。
+  配置测试内容，成功写入Mysql。
 
-![image-20200528210926715](images/nacos-06.png)
+  ![image-20200528210926715](images/nacos-06.png)
 
 ## 4. 代码运行
 
